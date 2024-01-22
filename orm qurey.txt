@@ -1,0 +1,64 @@
+from myapp.model import Movie
+1====qurey for create list=====
+
+Movie.objects.create(name="ozler",language="malayalam",run_time=120,genre="action",director="midhun",actors="jayaram",year=2024)
+Movie.objects.create(name="neru",language="malayalam",run_time=130,genre="drama",director="jeetujoseph",actors="mohanlal",year=2023)
+Movie.objects.create(name="turbo",language="malayalam",run_time=120,genre="action",director="vyshakh",actors="mammootty",year=2024)
+Movie.objects.create(name="malaikottavaliban",language="malayalam",run_time=140,genre="action",director="pelliserri",actors="mohanlal",year=2024)
+Movie.objects.create(name="leo",language="tamil",run_time=150,genre="action",director="lokesh",actors="vijay",year=2023)
+Movie.objects.create(name="salaar",language="kannada",run_time=160,genre="action",director="prashantneel",actors="prabhas",year=2023)
+
+
+
+
+
+2====qurey for fetching all records====
+
+qs=Movie.objects.all()
+qs
+
+3=====qurey for fetching 1 record======
+
+qs=Movie.objects.get(id=3)
+qs
+
+4====qurey for filtering objects=====
+
+Movie.objects.filter(column="value")
+                        language="malayalam"
+
+
+5====qurey for update=====
+
+Movie.objects.filter(id=1).update(genre="crime drama")
+
+
+6===qurey for delete====
+
+Movie.objects.filter(id=4).delete()
+
+
+
+====field lookup=====
+
+qs=Movie.objects.filter(year__lt=2024)
+qs
+
+<   __lt
+<=  __lte
+>   __gt
+>=  __gte
+
+Movie.objects.filter(year__lte=2024)
+
+
+====qurey for exclude====
+
+qs=Movie.objects.exclude(language="kannada")
+qs
+
+
+====qurey for listing all genre=====
+
+qs=Movie.objects.all().values_list("genre",flat=True).distinct()
+qs
